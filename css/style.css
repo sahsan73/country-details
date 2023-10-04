@@ -16,9 +16,26 @@ html {
   font-size: 62.5%;
 }
 
-body {
+.container {
   max-width: 130rem;
   margin: 0 auto;
+}
+
+.err-msg-container {
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.err-msg {
+  font-size: 1.6rem;
+  /* width: 50%; */
+  margin: 0 auto;
+  padding-top: 1.2rem;
+  padding-bottom: 1.2rem;
+  background-color: #ed3560;
+  color: #fff;
 }
 
 .get-details {

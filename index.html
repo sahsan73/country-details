@@ -11,35 +11,47 @@
   </head>
 
   <body>
-    <div class="get-details">
-      <form action="#" class="country-details-input-form">
-        <div>
-          <label for="country-name" class="label-country-name">
-            Country Name:
-          </label>
-          <input type="text" name="" id="country-name" placeholder="india" />
-        </div>
-        <button class="btn btn-country-details">Get Details</button>
-      </form>
-      <div class="where-details">
-        <button class="btn btn-where">Where Am I?</button>
-      </div>
+    <div class="err-msg-container">
+      <p class="err-msg">💥💥 Invalid Input!</p>
     </div>
 
-    <!-- TO SHOW COUNTRY DETAILS CARD -->
-    <section class="countries">
-      <!--
-        <article class="country">
-          <img class="country__img" src="" />
-          <div class="country__data">
-            <h3 class="country__name">COUNTRY</h3>
-            <h4 class="country__region">REGION</h4>
-            <p class="country__row"><span>👫</span>POP people</p>
-            <p class="country__row"><span>🗣️</span>LANG</p>
-            <p class="country__row"><span>💰</span>CUR</p>
+    <div class="container">
+      <div class="get-details">
+        <form action="#" class="country-details-input-form">
+          <div>
+            <label for="country-name" class="label-country-name">
+              Country Name:
+            </label>
+            <input
+              type="text"
+              name=""
+              id="country-name"
+              placeholder="india"
+              spellcheck="false"
+            />
           </div>
-        </article>
-      -->
-    </section>
+          <button class="btn btn-country-details">Get Details</button>
+        </form>
+        <div class="where-details">
+          <button class="btn btn-where">Where Am I?</button>
+        </div>
+      </div>
+
+      <!-- TO SHOW COUNTRY DETAILS CARD -->
+      <section class="countries">
+        <!--
+          <article class="country">
+            <img class="country__img" src="" />
+            <div class="country__data">
+              <h3 class="country__name">COUNTRY</h3>
+              <h4 class="country__region">REGION</h4>
+              <p class="country__row"><span>👫</span>POP people</p>
+              <p class="country__row"><span>🗣️</span>LANG</p>
+              <p class="country__row"><span>💰</span>CUR</p>
+            </div>
+          </article>
+        -->
+      </section>
+    </div>
   </body>
 </html>
