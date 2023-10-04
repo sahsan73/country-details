@@ -20,6 +20,10 @@
     margin-bottom: 2rem;
   }
 
+  .where-msg {
+    font-size: 3rem;
+  }
+
   .get-details {
     grid-template-columns: 1fr;
     margin-top: 35vh;
