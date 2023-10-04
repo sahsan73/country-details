@@ -95,6 +95,8 @@ html {
   margin-top: 8rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
   gap: 3rem;
 
   font-size: 2rem;
@@ -175,4 +177,6 @@ html {
 
 .where-msg {
   font-size: 6.4rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
 }

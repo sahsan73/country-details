@@ -1,0 +1,35 @@
+/*     1050px         */
+@media (max-width: 65.625em) {
+  .countries {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .country {
+    margin: 0;
+  }
+}
+
+/*       704px        */
+@media (max-width: 44em) {
+  .countries {
+    grid-template-columns: 1fr;
+    font-size: 2rem;
+  }
+
+  .country:first-child {
+    margin-bottom: 2rem;
+  }
+
+  .get-details {
+    grid-template-columns: 1fr;
+    margin-top: 35vh;
+    row-gap: 8rem;
+  }
+}
+
+/*       448px        */
+@media (max-width: 28em) {
+  html {
+    font-size: 56.25%;
+  }
+}
