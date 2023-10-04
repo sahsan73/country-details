@@ -19,6 +19,7 @@ html {
 .container {
   max-width: 130rem;
   margin: 0 auto;
+  /* display: none; */
 }
 
 .err-msg-container {
@@ -166,4 +167,12 @@ html {
 .neighbour {
   transform: scale(0.8) translateY(1rem);
   margin-left: 0;
+}
+
+.where-msg-container {
+  text-align: center;
+}
+
+.where-msg {
+  font-size: 6.4rem;
 }

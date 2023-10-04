@@ -7,6 +7,8 @@ const countryName = document.getElementById("country-name");
 const errorMessageContainer = document.querySelector(".err-msg-container");
 const errorMessage = document.querySelector(".err-msg");
 const contriesContainer = document.querySelector(".countries");
+const whereMessageContainer = document.querySelector(".where-msg-container");
+const whereMessage = document.querySelector(".where-msg");
 
 // if there are multiple countries with a single name
 // check for the original one
@@ -30,6 +32,14 @@ const getOriginalCountryData = function (data, country) {
     data = data[0];
   }
   return data;
+};
+
+// display Retry message
+const retryMsg = function (msg) {
+  errorMessage.textContent = msg;
+  errorMessage.style.backgroundColor = "#B0D9B1";
+  errorMessage.style.color = "#000";
+  errorMessageContainer.style.opacity = 1;
 };
 
 const renderCountry = function (data, label = "") {
@@ -99,7 +109,7 @@ btnCountryDetails.addEventListener("click", function (e) {
       .then(response => {
         // console.log(response);
         if (!response.ok) {
-          throw new Error(`Country "${country}" not found...!`);
+          throw new Error(`Sorry, country "${country}" not found...!`);
         }
 
         return response.json();
@@ -114,14 +124,45 @@ btnCountryDetails.addEventListener("click", function (e) {
         }
       })
       .catch(err => {
-        console.error(err);
+        // console.error(err);
+        whereMessage.textContent = err.message;
+        whereMessageContainer.classList.remove("hidden");
       })
-      .finally(() => {
-        errorMessage.textContent =
-          "Refresh the page to check for another country...!";
-        errorMessage.style.backgroundColor = "#B0D9B1";
-        errorMessage.style.color = "#000";
-        errorMessageContainer.style.opacity = 1;
-      });
+      .finally(() =>
+        retryMsg(`Refresh the page to check for another country...!`)
+      );
   }
+});
+
+/////////////////////////////////////////////////////////////
+// WHERE AM I FEATURE
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+btnWhere.addEventListener("click", function () {
+  getPosition()
+    .then(geoPos => {
+      console.log(geoPos);
+      const { latitude: lat, longitude: lng } = geoPos.coords;
+
+      console.log(lat, lng);
+      return fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+      );
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      getDetailsContainer.classList.add("hidden");
+      whereMessage.textContent = `You are in ${data.city}, ${data.principalSubdivision}, ${data.countryName}.`;
+      whereMessageContainer.classList.remove("hidden");
+    })
+    .catch(_ => {
+      getDetailsContainer.classList.add("hidden");
+      whereMessageContainer.classList.remove("hidden");
+    })
+    .finally(() => retryMsg(`Refresh the page to try again...!`));
 });
