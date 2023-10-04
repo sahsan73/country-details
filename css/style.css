@@ -1,0 +1,80 @@
+/*
+Font Sizes (px):
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+
+Spacing System (px):
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  max-width: 130rem;
+  margin: 0 auto;
+}
+
+.hidden {
+  opacity: 1;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.get-details {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  align-items: center;
+  justify-items: center;
+  margin-top: 50vh;
+  transform: translateY(-50%);
+  transition: all 0.3s ease;
+}
+
+.country-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4rem;
+}
+
+.label-country-name {
+  font-size: 2rem;
+}
+
+#country-name {
+  font-size: 1.8rem;
+  font-family: inherit;
+  padding: 1.2rem;
+  border-radius: 7px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#country-name::placeholder {
+  color: #ccc;
+}
+
+.btn {
+  font-size: 2.4rem;
+  padding: 2rem 4rem;
+  border: none;
+  background: none;
+  border-radius: 9px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-country-details {
+  background: linear-gradient(to top left, #694f8e, #442372);
+}
+
+.btn-where {
+  background: linear-gradient(to bottom right, #41000f, #d80032);
+}
