@@ -166,6 +166,9 @@ const renderMap = function (coords) {
 
   // remove the "Loading map..." text from web page
   document.querySelector("#map p").style.opacity = 0;
+
+  // add a border around map
+  document.querySelector("#map").style.border = "3px solid #333";
 };
 
 btnWhere.addEventListener("click", function () {
