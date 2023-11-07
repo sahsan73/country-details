@@ -179,4 +179,24 @@ html {
   font-size: 6.4rem;
   padding-left: 2.4rem;
   padding-right: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+/************************************************************
+                            MAP
+************************************************************/
+#map {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#map p {
+  font-size: 1.8rem;
+}
+
+.popup {
+  font-size: 2rem;
 }
