@@ -20,7 +20,7 @@ const getOriginalCountryData = function (data, country) {
       differentNames.push(dataCountry.cca2);
       differentNames.push(dataCountry.cca3);
 
-      const differentNamesLowerCase = differentNames.map(str =>
+      const differentNamesLowerCase = differentNames.map((str) =>
         str.toLowerCase()
       );
       if (differentNamesLowerCase.includes(country)) {
@@ -69,7 +69,9 @@ const renderCountry = function (data, label = "") {
 const renderNeighborCountries = async function (neighbors) {
   try {
     const response = await Promise.all(
-      neighbors.map(nei => fetch(`https://restcountries.com/v3.1/alpha/${nei}`))
+      neighbors.map((nei) =>
+        fetch(`https://restcountries.com/v3.1/alpha/${nei}`)
+      )
     );
     // const data = response.map(async res => await res.json());
     // console.log(response);
@@ -106,7 +108,7 @@ btnCountryDetails.addEventListener("click", function (e) {
 
     // https://restcountries.com/v2/name/
     fetch(`https://restcountries.com/v3.1/name/${country}`)
-      .then(response => {
+      .then((response) => {
         // console.log(response);
         if (!response.ok) {
           throw new Error(`Sorry, country "${country}" not found...!`);
@@ -114,7 +116,7 @@ btnCountryDetails.addEventListener("click", function (e) {
 
         return response.json();
       })
-      .then(data => {
+      .then((data) => {
         data = getOriginalCountryData(data, country);
         // console.log(data);
         renderCountry(data);
@@ -123,7 +125,7 @@ btnCountryDetails.addEventListener("click", function (e) {
           renderNeighborCountries(data.borders);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         // console.error(err);
         whereMessage.textContent = err.message;
         whereMessageContainer.classList.remove("hidden");
@@ -142,25 +144,43 @@ const getPosition = function () {
   });
 };
 
+const renderMap = function (coords) {
+  console.log(coords);
+  const map = L.map("map").setView(coords, 13);
+
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  L.marker(coords).addTo(map).bindPopup("You're here!").openPopup();
+
+  // remove the "Loading map..." text from web page
+  document.querySelector("#map p").style.opacity = 0;
+};
+
 btnWhere.addEventListener("click", function () {
   getPosition()
-    .then(geoPos => {
-      console.log(geoPos);
+    .then((geoPos) => {
+      // console.log(geoPos);
       const { latitude: lat, longitude: lng } = geoPos.coords;
+      // console.log(lat, lng);
 
-      console.log(lat, lng);
       return fetch(
         `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
       );
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
+    .then((response) => response.json())
+    .then((data) => {
+      // console.log(data);
       getDetailsContainer.classList.add("hidden");
       whereMessage.textContent = `You are in ${data.city}, ${data.principalSubdivision}, ${data.countryName}.`;
       whereMessageContainer.classList.remove("hidden");
+
+      // render map
+      renderMap([data.latitude, data.longitude]);
     })
-    .catch(_ => {
+    .catch((_) => {
       getDetailsContainer.classList.add("hidden");
       whereMessageContainer.classList.remove("hidden");
     })
