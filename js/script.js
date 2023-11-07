@@ -153,7 +153,16 @@ const renderMap = function (coords) {
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
 
-  L.marker(coords).addTo(map).bindPopup("You're here!").openPopup();
+  const options = {
+    autoClose: false,
+    closeOnClick: false,
+    className: "popup",
+  };
+  L.marker(coords)
+    .addTo(map)
+    .bindPopup(L.popup(options))
+    .setPopupContent("You're here!")
+    .openPopup();
 
   // remove the "Loading map..." text from web page
   document.querySelector("#map p").style.opacity = 0;
