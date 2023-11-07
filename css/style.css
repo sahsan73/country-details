@@ -44,7 +44,7 @@ html {
   grid-template-columns: 1.5fr 1fr;
   align-items: center;
   justify-items: center;
-  margin-top: 50vh;
+  margin-top: 40vh;
   transform: translateY(-50%);
   transition: all 0.3s ease;
 }
