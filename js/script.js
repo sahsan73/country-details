@@ -164,9 +164,6 @@ const renderMap = function (coords) {
     .setPopupContent("You're here!")
     .openPopup();
 
-  // remove the "Loading map..." text from web page
-  document.querySelector("#map p").style.opacity = 0;
-
   // add a border around map
   document.querySelector("#map").style.border = "3px solid #333";
 };
@@ -196,5 +193,10 @@ btnWhere.addEventListener("click", function () {
       getDetailsContainer.classList.add("hidden");
       whereMessageContainer.classList.remove("hidden");
     })
-    .finally(() => retryMsg(`Refresh the page to try again...!`));
+    .finally(() => {
+      retryMsg(`Refresh the page to try again...!`);
+
+      // remove the "Loading map..." text from web page
+      document.querySelector("#map p").style.opacity = 0;
+    });
 });
